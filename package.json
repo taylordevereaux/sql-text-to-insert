@@ -1,0 +1,17 @@
+{
+  "name": "@tdevereaux_/sql-text-to-insert",
+  "version": "1.0.0",
+  "description": "Simply paste in text and it will auto format each newline into an INSERT INTO VALUES entry.",
+  "main": "index.html",
+  "scripts": {
+    "test": "test",
+    "build": "webpack"
+  },
+  "author": "Taylor Devereaux",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^0.28.9",
+    "style-loader": "^0.19.1",
+    "webpack": "^3.10.0"
+  }
+}
