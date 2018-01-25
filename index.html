@@ -25,8 +25,8 @@
         <div class="form">
           <div class="form-group">
             <label for="tableName">Table Name</label>
-            <input name="tableName" class="form-control" id="tableName" type="text" />
-          </div>
+            <input name="tableName" class="form-control" id="tableName" type="text" placeholder="Ex: @Values, #Values or dbo.Values" />
+          </div> 
 
           <label data-toggle="collapse" data-target="#additionalOptions" aria-expanded="false" aria-controls="additionalOptions">
             <i class="fa fa-plus-square-o collapsed" aria-hidden="true"></i>
@@ -76,7 +76,11 @@
     </div>
     <div class="row">
       <div class="col">
-        <textarea id="input"></textarea>
+        <textarea id="input" placeholder="Example:
+        ID1	Data1	543.21
+        ID2	Data2	98.65
+        ID4	Data4	9083
+        "></textarea>
       </div>
     </div>
     <div class="row justify-content-between">

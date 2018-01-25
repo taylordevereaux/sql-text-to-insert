@@ -73,12 +73,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__style_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__style_css__);
 
 // This will allow the user to use the tab key in the input area.
-function enableTab (e) {
+function enableTab(e) {
   if (e.keyCode === 9) { // tab was pressed
     // get caret position/selection
     var val = this.value,
-        start = this.selectionStart,
-        end = this.selectionEnd;
+      start = this.selectionStart,
+      end = this.selectionEnd;
     // set textarea value to: text before caret + tab + text after caret
     this.value = val.substring(0, start) + '\t' + val.substring(end);
     // put caret at right position again
@@ -100,9 +100,9 @@ function createColummOptions(columnCount = 1) {
     tableBody.empty().append(rows);
   } else if (rows.length < columnCount) {
     // IF we have less than the column count then we need to create the new columns.
-    let l = rows.length+1;
+    let l = rows.length + 1;
     // Loop for the new amount we need to create.
-    for (l=l; l <= columnCount; ++l) {
+    for (l = l; l <= columnCount; ++l) {
       // The input checkbox that allows the user to confure the output per column.
       let input = $("<input type='checkbox' checked class='columnQuotes' />")
         // We need to bind to the change event of each option to update the output
@@ -117,9 +117,12 @@ function createColummOptions(columnCount = 1) {
       tableBody.append(row);
     }
   }
+  else if (columnCount == 0) {
+    tableBody.empty();
+  }
 }
 // The will read the columns options and return a map for each column index.
-function getColumnOptions () {
+function getColumnOptions() {
   let options = {
     quotes: {}
   };
@@ -127,15 +130,15 @@ function getColumnOptions () {
   var rows = $('#columnOptionsTable')
     .children('tbody')
     .children('tr')
-    .each((index,x) => {
-        let i = parseInt($('td', x).first().html())-1;
-        options["quotes"][i] = $('input.columnQuotes', x).is(':checked'); 
-      });
+    .each((index, x) => {
+      let i = parseInt($('td', x).first().html()) - 1;
+      options["quotes"][i] = $('input.columnQuotes', x).is(':checked');
+    });
   return options;
 }
 
 // Updates the output based on the input and any options.
-function updateOutput(event) {
+function updateOutput() {
   // The content form the input control.
   var input = document.getElementById('input').value.trim();
   // The SQL Table name if it was provided.
@@ -146,7 +149,7 @@ function updateOutput(event) {
   var tabColumns = document.getElementById('tabColumns').checked;
   // The PRE ctrl that we will display the output content to.
   var outputCtrl = document.getElementById('output');
- 
+
   // The output content that will be displayed to the user.
   var output = [];
   // We start to build the output based on the options provided.
@@ -167,7 +170,7 @@ function updateOutput(event) {
       var columnCount = 1;
       if (tabColumns) {
         var max = filter.map(function (item) {
-          return item.split('\t').filter(function(tabItem) {return tabItem.trim() !== ""}).length;
+          return item.split('\t').filter(function (tabItem) { return tabItem.trim() !== "" }).length;
         });
         columnCount = Math.max(...max);
       }
@@ -175,13 +178,13 @@ function updateOutput(event) {
       createColummOptions(columnCount);
       // Retrieve the column options.
       var options = getColumnOptions();
-      console.log(options);
+
       // We now loop through each row entry and append it to the output.
       for (var i = 0; i < filter.length; ++i) {
         var entry = filter[i];
         // If the trim flag is set we need to trim the entry.
         if (trim) entry = entry.trim();
-        
+
         var item = ["("];
         // We need to loop for each column if the tabColumns flag is set.
         if (tabColumns) {
@@ -191,11 +194,11 @@ function updateOutput(event) {
             // We need to use the configured quotes settings.
             let quote = options["quotes"][c] ? "'" : "";
             // Get the endQuote
-            let end = c != (columnCount-1) ? `${quote}, ` : `${quote}`;
-            let content =  (c < splitEntry.length) 
+            let end = c != (columnCount - 1) ? `${quote}, ` : `${quote}`;
+            let content = (c < splitEntry.length)
               // If the trim flag is set we trim each column as well.
               ? (trim ? splitEntry[c].trim() : splitEntry[c])
-               // We need to add an empty entry.
+              // We need to add an empty entry.
               : "";
             item.push(`${quote}${content}${end}`);
           }
@@ -203,19 +206,44 @@ function updateOutput(event) {
           item.push(`'${entry}'`);
         }
         // We only want to add a comma if we aren't the last entry.
-        item.push(i != (filter.length-1) ? ")," : ")");
+        item.push(i != (filter.length - 1) ? ")," : ")");
         // Join the items array into a string.
         output.push(item.join(''));
       }
       //console.log(output);
-    } 
+    }
+    else {
+      createColummOptions(0);
+    }
+  } else {
+    createColummOptions(0);
   }
   // We now set the output pre control to the content we generated.
   outputCtrl.innerHTML = output.join('\n');
 }
 
+// TEST DATA Generate some temporary data.
+var tempInput =
+  `ID1	Data1	543.21
+ID2	Data2	98.65
+ID4	Data4	9083`;
+var tempTable = '@Values';
+// The content form the input control.
+var inputCtrl = document.getElementById('input');
+// The SQL Table name if it was provided.
+var tableNameCtrl = document.getElementById('tableName');
+// Set the temporary values.
+inputCtrl.value = tempInput;
+tableNameCtrl.value = tempTable;
+// END TEST DATA
+
 // At the very start we are going to create our initial column
 updateOutput();
+
+// TEST DATA - Reset the values back to normal.
+inputCtrl.value = '';
+tableNameCtrl.value = '';
+// END TEST DATA
 
 // Binds the key up event to the input text area.
 $('#input').on('keyup', updateOutput).on('keydown', enableTab);
@@ -230,23 +258,23 @@ document.getElementById('trimEntries')
 // When the copy button is clicked we want to copy the text to clipboard or to highlight the pre content.
 document.getElementById('copyBtn')
   .addEventListener('click', function (event) {
-  
-  var text = document.getElementById('output');
-  var range;
-  var selection;
-  
-  if (document.body.createTextRange) {
-    range = document.body.createTextRange();
-    range.moveToElementText(text);
-    range.select();
-  } else if (window.getSelection) {
-    selection = window.getSelection();
-    range = document.createRange();
-    range.selectNodeContents(text);
-    selection.removeAllRanges();
-    selection.addRange(range);
-  }
-});
+
+    var text = document.getElementById('output');
+    var range;
+    var selection;
+
+    if (document.body.createTextRange) {
+      range = document.body.createTextRange();
+      range.moveToElementText(text);
+      range.select();
+    } else if (window.getSelection) {
+      selection = window.getSelection();
+      range = document.createRange();
+      range.selectNodeContents(text);
+      selection.removeAllRanges();
+      selection.addRange(range);
+    }
+  });
 
 /***/ }),
 /* 1 */
