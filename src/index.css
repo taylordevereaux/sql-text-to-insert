@@ -1,0 +1,43 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+textarea, input, pre, .form-control, .form-control:focus {
+  background-color: #090705;
+  border-color: #090705;
+  color: #E9ECF0;
+}
+
+.section-label {
+  display: block;
+  margin: 8px 0;
+  font-weight: bold;
+}
+#input {
+  resize: both;
+  width: 100%;
+}
+#input, #output {
+  min-height:200px;
+  min-width: 300px;
+}
+
+#output {
+  padding: 16px;
+  overflow: auto;
+  font-size: 85%;
+  line-height: 1.45;
+  background-color: #090705;
+  border-radius: 3px;
+}
+
+#columnOptionsTable {
+  text-align: center;
+}
+
+[data-toggle="collapse"][aria-expanded="true"] i.fa.collapsed,
+[data-toggle="collapse"][aria-expanded="false"] i.fa.expanded {
+  display: none;
+}  

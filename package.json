@@ -1,17 +1,28 @@
 {
-  "name": "@tdevereaux_/sql-text-to-insert",
-  "version": "1.0.0",
-  "description": "Simply paste in text and it will auto format each newline into an INSERT INTO VALUES entry.",
-  "main": "index.html",
-  "scripts": {
-    "test": "test",
-    "build": "webpack"
+  "name": "sql-text-tools",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "^4.0.0",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.12.9",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-scripts": "1.1.0",
+    "reactstrap": "^5.0.0-alpha.4"
   },
-  "author": "Taylor Devereaux",
-  "license": "ISC",
+  "scripts": {
+    "start-theme": "cd ../black-matter-theme && npm start",
+    "start-react": "react-scripts start",
+    "start": "npm-run-all --parallel start-react start-theme",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "configure-dependencies": "configure-local-dependencies",
+    "install-dependencies": "install-local-dependencies",
+    "watch-dependencies": "watch-local-dependencies"
+  },
   "devDependencies": {
-    "css-loader": "^0.28.9",
-    "style-loader": "^0.19.1",
-    "webpack": "^3.10.0"
+    "node-sass-chokidar": "0.0.3",
+    "npm-run-all": "^4.1.2"
   }
 }
