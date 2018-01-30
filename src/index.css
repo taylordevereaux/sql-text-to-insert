@@ -4,12 +4,6 @@ body {
   font-family: sans-serif;
 }
 
-textarea, input, pre, .form-control, .form-control:focus {
-  background-color: #090705;
-  border-color: #090705;
-  color: #E9ECF0;
-}
-
 .section-label {
   display: block;
   margin: 8px 0;
@@ -29,7 +23,7 @@ textarea, input, pre, .form-control, .form-control:focus {
   overflow: auto;
   font-size: 85%;
   line-height: 1.45;
-  background-color: #090705;
+  /* background-color: #090705; */
   border-radius: 3px;
 }
 

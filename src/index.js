@@ -4,13 +4,12 @@ import App from './App';
 
 // Dependencies
 import $ from 'jquery';
-import '../node_modules/bootstrap/dist/js/bootstrap';
+import '../node_modules/bootstrap/dist/js/bootstrap.js';
 
 // Theme 
 import '@tdevereaux_/black-matter-theme';
 // Additional Styles
 import './index.css';
-
 
 import registerServiceWorker from './registerServiceWorker';
 

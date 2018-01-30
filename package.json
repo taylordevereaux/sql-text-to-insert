@@ -8,18 +8,18 @@
     "popper.js": "^1.12.9",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
+    "react-redux": "^5.0.6",
     "react-scripts": "1.1.0",
     "reactstrap": "^5.0.0-alpha.4"
   },
   "scripts": {
-    "start-theme": "cd ../black-matter-theme && npm start",
+    "start-theme": "cd ../black-matter-theme && yarn start",
     "start-react": "react-scripts start",
-    "start": "npm-run-all --parallel start-react start-theme",
+    "build-css": "node-sass-chokidar src/ -o src/",
+    "watch-css": "yarn run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
+    "start": "npm-run-all --parallel watch-css start-theme start-react",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "configure-dependencies": "configure-local-dependencies",
-    "install-dependencies": "install-local-dependencies",
-    "watch-dependencies": "watch-local-dependencies"
+    "test": "react-scripts test --env=jsdom"
   },
   "devDependencies": {
     "node-sass-chokidar": "0.0.3",

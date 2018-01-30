@@ -21,8 +21,8 @@ class App extends Component {
               <input name="tableName" className="form-control" id="tableName" type="text" placeholder="Ex: @Values, #Values or dbo.Values" />
             </div> 
             <label data-toggle="collapse" data-target="#additionalOptions" aria-expanded="false" aria-controls="additionalOptions">
-              <i className="fa fa-plus-square-o collapsed" aria-hidden="true"></i>
-              <i className="fa fa-minus-square-o expanded" aria-hidden="true"></i>
+              <i className="fa fa-plus-square-o pr-2 collapsed" aria-hidden="true"></i>
+              <i className="fa fa-minus-square-o pr-2 expanded" aria-hidden="true"></i>
               Additional Options
             </label>
             <div id="additionalOptions" className="collapse" aria-expanded="false" aria-controls="additionalOptions">
@@ -41,8 +41,8 @@ class App extends Component {
             </div>
           </div>
           <label data-toggle="collapse" data-target="#columnOptionsForm" aria-expanded="true" aria-controls="columnOptionsForm">
-            <i className="fa fa-plus-square-o collapsed" aria-hidden="true"></i>
-            <i className="fa fa-minus-square-o expanded" aria-hidden="true"></i>
+            <i className="fa fa-plus-square-o pr-2 collapsed" aria-hidden="true"></i>
+            <i className="fa fa-minus-square-o pr-2 expanded" aria-hidden="true"></i>
             Column Options
           </label>
           <div className="collapse show" id="columnOptionsForm" aria-expanded="true" aria-controls="columnOptionsForm">
@@ -66,11 +66,13 @@ class App extends Component {
           </div>
           <div className="row">
             <div className="col">
-              <textarea id="input" placeholder={`Example:
-              ID1	Data1	543.21
-              ID2	Data2	98.65
-              ID4	Data4	9083
-              `}></textarea>
+              <div className="form-group">
+                <textarea id="input" className="form-control" placeholder={`Example:
+                ID1	Data1	543.21
+                ID2	Data2	98.65
+                ID4	Data4	9083
+                `}></textarea>
+              </div>
             </div>
           </div>
           <div className="row justify-content-between">
