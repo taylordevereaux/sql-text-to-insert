@@ -16,7 +16,7 @@ export default class HeaderView extends Component {
     return (
       <div className="col-12">
         <h1>{title}</h1>
-        <p>{this.props.children}</p>
+        {this.props.children}
       </div>
     );
   }

@@ -1,16 +1,28 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
+// React Components
+import {
+  Label,
+  FormGroup,
+  Input
+} from 'reactstrap';
+
 export default class TableName extends Component {
   static propTypes = {
-    prop: PropTypes
+    name: PropTypes.string
   }
 
   render() {
+    const name = this.props.name;
+
     return (
-      <div>
-        
-      </div>
-    )
+      <FormGroup>
+        <Label for="tableName">Table Name</Label>
+        <Input name="tableName" type="text" placeholder="Ex: @Values, #Values or dbo.Values">
+          {name}
+        </Input>
+      </FormGroup>
+    );
   }
 }
