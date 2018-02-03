@@ -3,29 +3,32 @@ import PropTypes from 'prop-types'
 
 // React Components
 import {
-  Label,
   FormGroup,
-  
   Collapse
 } from 'reactstrap';
 
 // Components
-import Icon from '../../Icon/Icon';
+import CollapseToggle from '../../CollapseToggle/CollapseToggle';
 import AdditionalOption from "./AdditionalOption/AdditionalOption";
 
+// Defines all the Options for configuring the output of the SQL Text Parser
 export default class AdditionalOptions extends Component {
   static propTypes = {
-    tabsAsColumns: PropTypes.bool,
-    trimEntries: PropTypes.bool,
+    options: PropTypes.shape({
+      tabsAsColumns: PropTypes.bool,
+      trimEntries: PropTypes.bool
+    }),
     expanded: PropTypes.bool,
     // Events
     onOptionChanged: PropTypes.func.isRequired
   }
 
   static defaultProps = {
-    tabsAsColumns: true,
-    trimEntries: true,
-    expaned: false
+    options: {
+      tabsAsColumns: true,
+      trimEntries: true
+    },
+    expanded: false
   }
 
   constructor (props) {
@@ -46,21 +49,15 @@ export default class AdditionalOptions extends Component {
 
   render() {
     // The Options to assign.
-    const tabsAsColumns = this.props.tabsAsColumns;
-    const trimEntries = this.props.trimEntries
+    const { tabsAsColumns, trimEntries } = this.props.options;
     // Are the options expanded by default.
     const expanded = this.state.expanded;
 
-    console.log(`Expanded: ${expanded}`);
-
     return (
       <FormGroup>
-        <Label className="w-100" onClick={this.toggle}>
-          {expanded 
-            ? <Icon modifier="minus-square-o" className="pr-2" aria-hidden="true" />
-            : <Icon modifier="plus-square-o" className="pr-2" aria-hidden="true" />}
-          <strong>Additional Options</strong>
-        </Label>
+        <CollapseToggle className="w-100" expanded={expanded} onClick={this.toggle}>
+          <strong className="pl-2">Additional Options</strong>
+        </CollapseToggle>
         <Collapse className="ml-4" isOpen={expanded} aria-expanded={expanded}>
           <AdditionalOption name="tabsAsColumns" checked={tabsAsColumns} onChange={this.handleChange}>
             Treat tabs as columns

@@ -16,8 +16,15 @@ import {
 import HeaderView from '../HeaderView/HeaderView';
 import TableName from './TableName/TableName';
 import AdditionalOptions from './AdditionalOptions/AdditionalOptions';
+import ColumnOptions from './ColumnOptions/ColumnOptions';
+import TextInput from './TextInput/TextInput';
 
 export default class SqlInsertIntoView extends Component {
+  // Properties
+  static propTypes = {
+    className: PropTypes.string
+  }
+  // Set the default state of the view.
   constructor (props) {
     super(props);
     this.state = {
@@ -27,16 +34,20 @@ export default class SqlInsertIntoView extends Component {
       },
       columnOptions: {
 
-      }
+      },
+      input: ""
     }
   }
   
-  static propTypes = {
-    className: PropTypes.string
-  }
 
+  // Handles anytime an additional option is changed.
   handleAdditionalOptions = (option) => {
     this.setState(prev => ({options: Object.assign(prev.options, option)}));
+  }
+  // Handles the text input from changing.
+  handleTextInputChange = (e) => {
+    const value = e.target.value;
+    this.setState(prev => ({input: value}));
   }
 
   render() {
@@ -51,6 +62,8 @@ export default class SqlInsertIntoView extends Component {
     }
     // Options passed to the Additional Options COmponent.
     const options = this.state.options;
+    // Text Input 
+    const input = this.state.input;
 
     // Render Method
     return (
@@ -63,43 +76,12 @@ export default class SqlInsertIntoView extends Component {
         <Col {...cols}>
           <Form>
             <TableName />
-            <AdditionalOptions onOptionChanged={this.handleAdditionalOptions} {...options} />
+            <AdditionalOptions onOptionChanged={this.handleAdditionalOptions} options={options} />
+            <ColumnOptions />
           </Form>
-          <label data-toggle="collapse" data-target="#columnOptionsForm" aria-expanded="true" aria-controls="columnOptionsForm">
-            <i className="fa fa-plus-square-o pr-2 collapsed" aria-hidden="true"></i>
-            <i className="fa fa-minus-square-o pr-2 expanded" aria-hidden="true"></i>
-            <strong>Column Options</strong>
-          </label>
-          <div className="collapse show ml-4" id="columnOptionsForm" aria-expanded="true" aria-controls="columnOptionsForm">
-            <table className="table" id="columnOptionsTable">
-              <thead>
-                <tr>
-                  <th>Column</th>
-                  <th>Include Quotes</th>
-                </tr>
-              </thead>
-              <tbody>
-              </tbody>
-            </table>
-          </div>
         </Col>
         <Col {...cols}>
-          <div className="row">
-            <div className="col">
-              <label className="section-label">Input</label>
-            </div>
-          </div>
-          <div className="row">
-            <div className="col">
-              <div className="form-group">
-                <textarea id="input" className="form-control" placeholder={`Example:
-              ID1	Data1	543.21
-              ID2	Data2	98.65
-              ID4	Data4	9083
-              `}></textarea>
-              </div>
-            </div>
-          </div>
+          <TextInput input={input} onChange={this.handleTextInputChange} />
           <div className="row justify-content-between">
             <div className="col-8">
               <label className="section-label">Output</label>

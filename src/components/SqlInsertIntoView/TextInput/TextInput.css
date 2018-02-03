@@ -1,0 +1,7 @@
+
+.TextInput textarea {
+  resize: both;
+  width: 100%;
+  min-height:200px;
+  min-width: 300px;
+}
