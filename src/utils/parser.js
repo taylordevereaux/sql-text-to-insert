@@ -58,7 +58,7 @@ export function parseSQLInsertInto(input = '', tableName = '', columns = [], opt
   var output = [];
   // We start to build the output based on the options provided.
   if (tableName !== "") {
-    output.push(`"INSERT INTO ${tableName} \nVALUES`);
+    output.push(`INSERT INTO ${tableName} \nVALUES`);
   }
   // We need to get each new line entry and filter out any blanks.
   const filter = parseRows(input);
