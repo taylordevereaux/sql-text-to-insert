@@ -14,11 +14,11 @@ import './TextOutput.css';
 export default class TextOutput extends Component {
   // Properties.
   static propTypes = {
-    output: string
+    value: string
   }
   // Default Properties.
   static defaultProps = {
-    output: ""
+    value: ""
   }
   // We need to get a reverence to the Pre object to setup the text selection.
   handlePreRef = (pre) => this.pre = pre;
@@ -43,14 +43,14 @@ export default class TextOutput extends Component {
   }
 
   render() {
-    const output = this.props.output;
+    const value = this.props.value;
     return (
       <div className="TextOutput">
         <div className="d-flex justify-content-between align-items-end mb-1">
           <Label>Output</Label>
           <Button color="secondary" size="sm" onClick={this.handleCopy}>Copy</Button>
         </div>
-        <pre ref={this.handlePreRef}>{output}</pre>
+        <pre ref={this.handlePreRef}>{value}</pre>
       </div>
     )
   }

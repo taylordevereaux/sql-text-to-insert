@@ -1,4 +1,5 @@
 {
     "liveServer.settings.ChromeDebuggingAttachment": true,
-    "liveServer.settings.CustomBrowser": "chrome"
+    "liveServer.settings.CustomBrowser": "chrome",
+    "editor.tabSize": 2
 }

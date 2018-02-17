@@ -2,7 +2,10 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 // Utilities
 import classNames from 'classnames';
-import {parseColumnCount} from '../../utils/parser';
+import {
+  parseColumnCount,
+  parseSQLInsertInto
+} from '../../utils/parser';
 // ReactStrap Components
 import {
   Form,
@@ -28,6 +31,7 @@ export default class SqlInsertIntoView extends Component {
   }
   // Set the default state of the view. 
   state = {
+    tableName: "",
     options: {
       trimEntries: true,
       tabsAsColumns: true
@@ -38,12 +42,14 @@ export default class SqlInsertIntoView extends Component {
   ////////////////////////////
   // Helper Functions
   ////////////////////////////
-  updateColumns (state, count) {
-    let columns = state.columns;
+  updateColumns (value, columns, options) {
+    let count = options.tabsAsColumns ? parseColumnCount(value) : 1;
+    // Then we need to update the state with more or less columns
+    // depending on the text.
     const length = columns.length;
     // We need to remove some columns 
     if (length > count) {
-      columns = columns.filter(i => i < count);
+      columns = columns.filter((x, i) => i < count);
     }
     // We need to add more column options.
     else if (length < count) {
@@ -53,12 +59,28 @@ export default class SqlInsertIntoView extends Component {
     }
     return columns;
   }
+  
+
   ////////////////////////////
   // Event Handlers
   ////////////////////////////
+  // Handles the Table name changing 
+  handleTableNameChange = (e) => {
+    this.setState({tableName: e.target.value});
+  }
   // Handles anytime an additional option is changed.
   handleAdditionalOptions = (option) => {
-    this.setState(prev => ({options: Object.assign(prev.options, option)}));
+    this.setState(prev => {
+      // Get the new options 
+      const options = Object.assign(prev.options, option);
+      // Get the new column count based on the options.
+      const columns = this.updateColumns(prev.input, prev.columns, options);
+
+      return { 
+        options: options,
+        columns: columns
+      };
+    });
   }
   // Handles the Column Options from changing.
   handleColumnOptions = (e) => {
@@ -74,14 +96,11 @@ export default class SqlInsertIntoView extends Component {
   // Handles the text input from changing.
   handleTextInputChange = (e) => {
     const value = e.target.value;
-    
-    this.setState(prev => {
-      // We need to get how many columns that then text contains.
-      let cols = parseColumnCount(value);
-      // Then we need to update the state with more or less columns
-      // depending on the text.
-      const columns = this.updateColumns(prev, cols);
 
+    this.setState(prev => {
+      // Get the new column count based on the options.
+      const columns = this.updateColumns(value, prev.columns, prev.options);
+      
       return {
         input: value,
         columns: columns 
@@ -101,13 +120,16 @@ export default class SqlInsertIntoView extends Component {
       lg: 6,
       xl: 6
     }
+    // Table name 
+    const tableName = this.state.tableName;
     // Options passed to the Additional Options COmponent.
     const options = this.state.options;
     // Column options passed.
     const columns = this.state.columns;   
     // Text Input 
     const input = this.state.input;
-
+    // Calculate The output.
+    const output = parseSQLInsertInto(input, tableName, columns, options);
     // Render Method
     return (
       <div id='SqlInsertIntoView' className={viewClass}>
@@ -118,14 +140,14 @@ export default class SqlInsertIntoView extends Component {
         </HeaderView>
         <Col {...cols}>
           <Form>
-            <TableName />
+            <TableName value={tableName} onChange={this.handleTableNameChange} />
             <AdditionalOptions onOptionChanged={this.handleAdditionalOptions} options={options} />
             <ColumnOptions columns={columns} onChange={this.handleColumnOptions} />
           </Form>
         </Col>
         <Col {...cols}>
           <TextInput value={input} onChange={this.handleTextInputChange} />
-          <TextOutput />
+          <TextOutput value={output} />
         </Col>
       </div>
     );

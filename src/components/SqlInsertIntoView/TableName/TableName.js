@@ -10,18 +10,26 @@ import {
 
 export default class TableName extends Component {
   static propTypes = {
-    name: PropTypes.string
+    value: PropTypes.string,
+    className: PropTypes.string,
+    onChange: PropTypes.func.isRequired
+  }
+  static defaultProps = {
+    value: ""
+  }
+  // Handles the Value of the Text Input Changing.
+  handleChange = (e) => {
+    this.props.onChange(e);
   }
 
   render() {
-    const name = this.props.name;
-
+    const value = this.props.value;
     return (
       <FormGroup>
         <Label for="tableName">Table Name</Label>
-        <Input name="tableName" type="text" placeholder="Ex: @Values, #Values or dbo.Values">
-          {name}
-        </Input>
+        <Input name="tableName" type="text" placeholder="Ex: @Values, #Values or dbo.Values"
+          value={value}
+          onChange={this.handleChange} />
       </FormGroup>
     );
   }
