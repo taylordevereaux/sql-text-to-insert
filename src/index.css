@@ -1,0 +1,23 @@
+.section-label {
+  display: block;
+  margin: 8px 0;
+  font-weight: bold;
+}
+
+/* #output { */
+  /* padding: 16px; */
+  /* overflow: auto; */
+  /* font-size: 85%; */
+  /* line-height: 1.45; */
+  /* background-color: #090705; */
+  /* border-radius: 3px; */
+/* } */
+
+/* #columnOptionsTable {
+  text-align: center;
+} */
+
+/* [data-toggle="collapse"][data-expanded="true"] i.fa.collapsed,
+[data-toggle="collapse"][data-expanded="false"] i.fa.expanded {
+  display: none;
+}   */

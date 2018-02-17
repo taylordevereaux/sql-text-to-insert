@@ -1,23 +1,15 @@
 # See https://help.github.com/ignore-files/ for more about ignoring files.
 
-# local environment
-/.vscode/chrome
-
-# auto-generated
-
 # dependencies
 /node_modules
+/**/node_modules
 
 # testing
 /coverage
 
 # production
 /build
-
-# theme project
-/theme/node_modules
-/theme/dist
-/theme/docs
+/**/build
 
 # misc
 .DS_Store

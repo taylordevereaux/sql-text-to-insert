@@ -1,0 +1,8 @@
+.ColumnOptions table td, 
+.ColumnOptions table th {
+  text-align: center;
+}
+ 
+.ColumnOptions table th:first-child {
+  text-align: left;
+}

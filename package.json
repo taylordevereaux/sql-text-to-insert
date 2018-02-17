@@ -1,17 +1,30 @@
 {
-  "name": "@tdevereaux_/sql-text-to-insert",
-  "version": "1.0.0",
-  "description": "Simply paste in text and it will auto format each newline into an INSERT INTO VALUES entry.",
-  "main": "index.html",
-  "scripts": {
-    "test": "test",
-    "build": "webpack"
+  "name": "sql-text-tools",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "^4.0.0",
+    "classnames": "^2.2.5",
+    "jquery": "^3.3.1",
+    "popper.js": "^1.12.9",
+    "prop-types": "^15.6.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-redux": "^5.0.6",
+    "react-scripts": "1.1.0",
+    "reactstrap": "^5.0.0-beta"
   },
-  "author": "Taylor Devereaux",
-  "license": "ISC",
+  "scripts": {
+    "start-theme": "cd ../black-matter-theme && yarn start",
+    "start-react": "react-scripts start",
+    "build-css": "node-sass-chokidar src/ -o src/",
+    "watch-css": "yarn run build-css && node-sass-chokidar src/ -o src/ --watch --recursive",
+    "start": "npm-run-all --parallel watch-css start-theme start-react",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom"
+  },
   "devDependencies": {
-    "css-loader": "^0.28.9",
-    "style-loader": "^0.19.1",
-    "webpack": "^3.10.0"
+    "node-sass-chokidar": "0.0.3",
+    "npm-run-all": "^4.1.2"
   }
 }

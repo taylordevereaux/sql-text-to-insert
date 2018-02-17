@@ -4,6 +4,4 @@ Auto-generate an SQL insert statement from the text you paste into the input. Yo
 
 ![Alt][1]
 
-A Pen created at CodePen.io. You can find this one at [https://codepen.io/taylordevereaux_/pen/eyPaqw](https://codepen.io/taylordevereaux_/pen/eyPaqw).
-
-[1]: /screenshots/screenshot.png "Screenshot"
+[1]: /screenshots/screenshot_1_0.png "Screenshot"
