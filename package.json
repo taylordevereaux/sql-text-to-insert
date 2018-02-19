@@ -1,6 +1,7 @@
 {
   "name": "sql-text-tools",
   "version": "0.1.0",
+  "homepage": "https://taylordevereaux.github.io/sql-text-to-insert/",
   "private": true,
   "dependencies": {
     "bootstrap": "^4.0.0",

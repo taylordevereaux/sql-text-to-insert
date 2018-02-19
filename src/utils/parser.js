@@ -8,7 +8,7 @@ const optionsDefault = {
  * Helper Functions
  *************************************************************/
 // Parses the collection of rows from the input text.
-function parseRows(input = '') {
+export function parseRows(input = '') {
   // If ther is no input we don't need to do anything.
   if (input !== "") {
     // We need to get each new line entry and filter out any blanks.
