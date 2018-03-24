@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 
 // Dependencies
+// eslint-disable-next-line
 import $ from 'jquery';
 import '../node_modules/bootstrap/dist/js/bootstrap.js';
 

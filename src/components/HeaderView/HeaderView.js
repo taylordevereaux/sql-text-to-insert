@@ -14,7 +14,7 @@ export default class HeaderView extends Component {
     const title = this.props.title;
     // const subtitle = this.props.subtitle;
     return (
-      <div className="col-12">
+      <div className={this.props.className}>
         <h1>{title}</h1>
         {this.props.children}
       </div>

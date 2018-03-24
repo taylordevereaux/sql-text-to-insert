@@ -49,7 +49,7 @@ export default class TextInput extends Component {
 
   render() {
     // Class names passed to the component.
-    const className = classNames("TextInput", this.props.className);
+    const className = classNames("TextInput h-100 m-0 pb-3", this.props.className);
     // Input Value
     const value = this.props.value;
     // Placeholder Value for the text area.
@@ -61,11 +61,13 @@ ID4	Data4	9083`;
     return (
       <FormGroup className={className}>
         <Label>Input</Label>
-        <Input type="textarea" name="input" 
-          placeholder={placeholder} 
-          onChange={this.handleChange}
-          onKeyDown={this.handleKeyDown}
-          value={value} />
+        <div className="h-100" style={{paddingTop: "30px", marginTop: "-30px"}}>
+          <Input type="textarea" className="h-100" name="input" 
+            placeholder={placeholder} 
+            onChange={this.handleChange}
+            onKeyDown={this.handleKeyDown}
+            value={value} />
+        </div>
       </FormGroup>
     )
   }

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import './App.css';
 // React Strap Components
 import {Container,
@@ -13,10 +13,10 @@ import FooterView from "./components/FooterView/FooterView";
 class App extends Component {
   render() {
     return (
-    <Container id="app" fluid={true}>
-      <Row className="mt-3">
-        <Col>
-          <SqlInsertIntoView className="col-12" />
+    <Container id="app" fluid={true} className="h-100 d-flex flex-column">
+      <Row className="d-flex flex-fill no-gutters">
+        <Col className="d-flex flex-column">
+          <SqlInsertIntoView />
         </Col>
       </Row>
       <Row className="align-items-end">

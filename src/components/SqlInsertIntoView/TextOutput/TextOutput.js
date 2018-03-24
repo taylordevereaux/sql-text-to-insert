@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { string } from 'prop-types'
 // Utilities
-import classNames from 'classnames';
+// import classNames from 'classnames';
 // ReactStrap Components
 import {
   Button,
@@ -45,12 +45,14 @@ export default class TextOutput extends Component {
   render() {
     const value = this.props.value;
     return (
-      <div className="TextOutput">
+      <div className="TextOutput h-100">
         <div className="d-flex justify-content-between align-items-end mb-1">
           <Label>Output</Label>
           <Button color="secondary" size="sm" onClick={this.handleCopy}>Copy</Button>
         </div>
-        <pre ref={this.handlePreRef}>{value}</pre>
+        <div className="h-100" style={{paddingTop: "36px", marginTop: "-36px"}}>
+          <pre className="h-100" ref={this.handlePreRef}>{value}</pre>
+        </div>
       </div>
     )
   }

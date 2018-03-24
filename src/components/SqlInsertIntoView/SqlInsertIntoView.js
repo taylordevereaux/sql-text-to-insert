@@ -9,11 +9,12 @@ import {
 // ReactStrap Components
 import {
   Form,
-  FormGroup,
-  Label,
-  Input,
+  // FormGroup,
+  // Label,
+  // Input,
   // Container
-  Col
+  Col,
+  Row
 } from 'reactstrap'
 
 // Components
@@ -112,9 +113,10 @@ export default class SqlInsertIntoView extends Component {
     // const textUpdated = this.textUpdated;
     // this.textUpdated = false;
     // Header View Class Names
-    const viewClass = classNames('row', this.props.className);
+    const viewClass = classNames('row d-flex flex-fill no-gutters', this.props.className);
     // Default Column Settings for the top level columns
     const cols = {
+      xs: 12,
       sm: 12,
       md: 12,
       lg: 6,
@@ -133,21 +135,31 @@ export default class SqlInsertIntoView extends Component {
     // Render Method
     return (
       <div id='SqlInsertIntoView' className={viewClass}>
-        <HeaderView className="col" 
-          title={'SQL INSERT INTO Text Parser'}>
-          <p>Simply paste in text and it will auto format each newline into an <strong>INSERT INTO VALUES</strong> entry</p>
-          <hr />
-        </HeaderView>
-        <Col {...cols}>
-          <Form>
-            <TableName value={tableName} onChange={this.handleTableNameChange} />
-            <AdditionalOptions onOptionChanged={this.handleAdditionalOptions} options={options} />
-            <ColumnOptions columns={columns} onChange={this.handleColumnOptions} />
-          </Form>
-        </Col>
-        <Col {...cols}>
-          <TextInput value={input} onChange={this.handleTextInputChange} />
-          <TextOutput value={output} />
+        <Col className="d-flex flex-column">
+          <Row>
+            <HeaderView className="col col-12"
+              title={'SQL INSERT INTO Text Parser'}>
+              <p>Simply paste in text and it will auto format each newline into an <strong>INSERT INTO VALUES</strong> entry</p>
+              <hr />
+            </HeaderView>
+          </Row>
+          <Row className="d-flex flex-row h-100">
+            <Col {...cols} className="d-flex flex-column">
+              <Form>
+                <TableName value={tableName} onChange={this.handleTableNameChange} />
+                <AdditionalOptions onOptionChanged={this.handleAdditionalOptions} options={options} />
+                <ColumnOptions columns={columns} onChange={this.handleColumnOptions} />
+              </Form>
+            </Col>
+            <Col {...cols} className="d-flex flex-column pb-3">
+              <div className="h-50">
+                <TextInput value={input} onChange={this.handleTextInputChange} />
+              </div>
+              <div className="h-50">
+                <TextOutput value={output} />
+              </div>
+            </Col>
+          </Row>
         </Col>
       </div>
     );
