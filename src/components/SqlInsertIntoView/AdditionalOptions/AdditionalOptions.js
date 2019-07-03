@@ -16,7 +16,8 @@ export default class AdditionalOptions extends Component {
   static propTypes = {
     options: PropTypes.shape({
       tabsAsColumns: PropTypes.bool,
-      trimEntries: PropTypes.bool
+      trimEntries: PropTypes.bool,
+      singleQuotes: PropTypes.bool
     }),
     expanded: PropTypes.bool,
     // Events
@@ -26,7 +27,8 @@ export default class AdditionalOptions extends Component {
   static defaultProps = {
     options: {
       tabsAsColumns: true,
-      trimEntries: true
+      trimEntries: true,
+      singleQuotes: true
     },
     expanded: false
   }
@@ -49,7 +51,7 @@ export default class AdditionalOptions extends Component {
 
   render() {
     // The Options to assign.
-    const { tabsAsColumns, trimEntries } = this.props.options;
+    const { tabsAsColumns, trimEntries, singleQuotes } = this.props.options;
     // Are the options expanded by default.
     const expanded = this.state.expanded;
 
@@ -64,6 +66,9 @@ export default class AdditionalOptions extends Component {
           </AdditionalOption>
           <AdditionalOption name="trimEntries" checked={trimEntries} onChange={this.handleChange}>
             Trim leading and trailing spaces
+          </AdditionalOption>
+          <AdditionalOption name="singleQuotes" checked={singleQuotes} onChange={this.handleChange}>
+            Single Quotes
           </AdditionalOption>
         </Collapse>
       </FormGroup>

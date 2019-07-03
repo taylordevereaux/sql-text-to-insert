@@ -60,6 +60,8 @@ export function parseSQLInsertInto(input = '', tableName = '', columns = [], opt
   if (tableName !== "") {
     output.push(`INSERT INTO ${tableName} \nVALUES`);
   }
+
+  const quoteOption = options.singleQuotes ? `'` : `"`; 
   // We need to get each new line entry and filter out any blanks.
   const filter = parseRows(input);
   // If the filtered version has more than one item we can display the output to the user.
@@ -78,7 +80,7 @@ export function parseSQLInsertInto(input = '', tableName = '', columns = [], opt
         // loop for the max column count.
         for (let c = 0; c < columnCount; ++c) {
           // We need to use the configured quotes settings.
-          let quote = columns[c].includeQuotes ? "'" : "";
+          let quote = columns[c].includeQuotes ? `${quoteOption}` : "";
           // If we are not including quotes and the text is empty it needs to be null instead.
           let empty = columns[c].includeQuotes ? "" : "NULL";
           // Get the endQuote

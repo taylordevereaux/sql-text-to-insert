@@ -35,7 +35,8 @@ export default class SqlInsertIntoView extends Component {
     tableName: "",
     options: {
       trimEntries: true,
-      tabsAsColumns: true
+      tabsAsColumns: true,
+      singleQuotes: true
     },
     columns: [],
     input: ""
