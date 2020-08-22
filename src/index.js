@@ -8,9 +8,10 @@ import $ from 'jquery';
 import '../node_modules/bootstrap/dist/js/bootstrap.js';
 
 // Theme 
-import '@tdevereaux_/black-matter-theme';
+import '@tdevereaux_/black-matter-theme/dist/dark-matter-theme.css';
+import '@tdevereaux_/black-matter-theme/dist/index.css';
 // Additional Styles
-import './index.css';
+import './index.scss';
 
 import registerServiceWorker from './registerServiceWorker';
 
